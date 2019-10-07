@@ -35,7 +35,7 @@ module Authlogic
         def assign?
           @record &&
             @record.class.column_names.include?("last_request_at") &&
-            @controller.last_request_update_allowed? && (
+            @controller.last_request_update_allowed?(self) && (
               @record.last_request_at.blank? ||
               @last_request_at_threshold.to_i.seconds.ago >= @record.last_request_at
             )
